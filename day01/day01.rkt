@@ -1,8 +1,6 @@
 #! /usr/bin/env racket
 #lang racket
 
-(provide (all-defined-out))
-
 (define (line->nums line)
   (map string->number (string-split line)))
 
@@ -32,10 +30,15 @@
                 (* n (appearance-count n rights)))
               lefts)))
 
-(define (main)
-  (define input (parse-file "input"))
-  (println (part1 input))
-  (println (part2 input))
-  #||#)
+(module+ test
+  (require rackunit)
 
-(main)
+  (define example (parse-file "example"))
+  (check-equal? (part1 example) 11)
+  (check-equal? (part2 example) 31)
+
+  (define input (parse-file "input"))
+  (check-equal? (part1 input) 2192892)
+  (check-equal? (part2 input) 22962826)
+
+  #||#)
