@@ -7,6 +7,7 @@
 (define (parse-file fname)
   (string-join (string-split (file->string fname)
                              "\n")))
+
 (define (extract-nums str)
   (map (curry map string->number)
        (regexp-match* MUL_PATTERN
@@ -23,13 +24,12 @@
   #||#)
 
 (define (part1 input)
-  (for/sum ([p (extract-nums input)]) (apply * p))
-  #||#)
+  (for/sum ([p (extract-nums input)])
+           (apply * p)))
 
 (define (part2 input)
   (for/sum ([p (extract-nums (preprocess input))])
-           (apply * p))
-  #||#)
+           (apply * p)))
 
 (module+ test
   (require rackunit)
